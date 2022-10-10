@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App';
+import './index.css';
 // import '../src/data/types';
 // import '../src/data/generics';
-import '../src/data/practice';
+// import '../src/data/practice';
+// import '../src/data/practiceEnum';
 // import '../src/data/enum';
 // import '../src/data/additionalTypes';
-import './index.css';
+import './data/classes/overload';
+import './data/classes/methods';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
