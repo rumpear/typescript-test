@@ -1,5 +1,3 @@
-import { isArray } from 'util';
-
 enum PaymentStatus {
   Hold,
   Finished,
@@ -52,9 +50,11 @@ setTimeout(() => {
 
 class User {
   skills: string[];
+
   constructor(skills: string[]) {
     this.skills = skills;
   }
+
   addSkills(skill: string): void;
   addSkills(skills: string[]): void;
   addSkills(skillOrSkills: string | string[]) {
@@ -68,6 +68,8 @@ class User {
 }
 
 const Roman = new User(['HTML, CSS, JavaScript, TypeScript, React, NodeJS']);
-const Victor = new User('JS');
+// const Victor = new User('JS');
+Roman.addSkills('English');
+Roman.addSkills(['Soft skills', 'Hard skills']);
 console.log(Roman);
 export {};
