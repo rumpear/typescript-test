@@ -38,29 +38,68 @@ class Delivery {
 
 class Cart extends Delivery {
   products?: IProductsData[];
+  totalPrice?: number;
 
   constructor(products?: IProductsData[]) {
     super();
-    this.products = products;
+    this.products = products ?? [];
   }
 
-  addToCart(product: IProductsData) {
-    this.products?.push(product);
+  addToCart(id: number) {
+    const item = PRODUCTS_DATA.find(p => id === p.id);
+    const isProductsExist = Array.isArray(this.products);
+
+    // if (item && isProductsExist) {
+    //   this.products.push(item);
+    // }
+
+    if (item && Array.isArray(this.products)) {
+      this.products.push(item);
+    }
   }
 
-  removeFromCart() {}
-  countTotalPrice() {}
+  removeFromCart(id: number) {
+    if (Array.isArray(this.products)) {
+      this.products = this.products.filter(p => p.id !== id);
+    }
+    // const updProducts = this.products.filter(p => p.id !== id);
+    // console.log(updProducts, 'updProducts');
+    // this.products = updProducts;
+  }
+
+  countTotalPrice() {
+    if (Array.isArray(this.products)) {
+      this.totalPrice = this.products.reduce((prev, product) => {
+        return prev + product.price;
+      }, 0);
+
+      // this.products.reduce((prev, product) => {
+      //   return prev + product.price;
+      // }, 0);
+    }
+  }
   checkoutCartConditions(): boolean {
     const isDeliverySelected = this.userAddress || this.shopId;
     return Boolean(isDeliverySelected && this.products);
   }
 }
 
-const order = new Cart(PRODUCTS_DATA);
+const order = new Cart();
 // console.log();
-order.homeDelivery('12.10.2022', 'Cherkasy');
-// order.selfDelivery(2);
+// order.homeDelivery('12.10.2022', 'Cherkasy');
+order.selfDelivery(4);
 console.log(order.checkoutCartConditions());
+// order.addToCart({ id: 24, name: 'Cooler', price: 50 });
+
+order.addToCart(1);
+order.addToCart(3);
+order.addToCart(5);
+order.addToCart(6);
+
+order.removeFromCart(2);
+order.removeFromCart(6);
+order.removeFromCart(3);
+order.countTotalPrice();
 console.log(order);
 
 class OnlineShop extends Component {
