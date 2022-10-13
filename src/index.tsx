@@ -12,6 +12,7 @@ import './index.css';
 // import './data/classes/methods';
 // import './data/classes/getSet';
 // import './data/classes/extends';
+// import './data/classes/practice';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
