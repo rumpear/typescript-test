@@ -1,14 +1,16 @@
-import { Counter, CounterClass } from './Counter';
-import { Form } from './Form';
+// import { Counter, CounterClass } from './Counter';
+// import { Form } from './Form';
+import { OnlineShop } from './OnlineShop';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Counter />
+        {/* <Counter />
         <CounterClass initialValue={1} />
-        <Form />
+        <Form /> */}
+        <OnlineShop />
       </header>
     </div>
   );
