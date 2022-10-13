@@ -16,11 +16,18 @@ interface IProductsData {
   price: number;
 }
 
-const ProductsList = () => {
-  const [productsData, setProductsData] =
-    useState<IProductsData[]>(PRODUCTS_DATA);
+interface IProps {
+  products: IProductsData[];
+  addToCart: (id: number) => void;
+}
 
-  // const handle
+const ProductsList = ({ products, addToCart }: IProps) => {
+  const [productsData, setProductsData] = useState<IProductsData[]>(products);
+
+  const handleAddProduct = (id: number): void => {
+    console.log(id);
+    addToCart(id);
+  };
 
   return (
     <div className="wrapper">
@@ -30,7 +37,13 @@ const ProductsList = () => {
             <div key={id}>
               <h5>{name}</h5>
               <h6>{price}</h6>
-              <button type="button">Add to cart</button>
+              <button type="button" onClick={() => handleAddProduct(id)}>
+                Add to cart
+              </button>
+
+              {/* <button type="button" onClick={handleAddProduct}>
+                Remove from cart
+              </button> */}
             </div>
           );
         })
