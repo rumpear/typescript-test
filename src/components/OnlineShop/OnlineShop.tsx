@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { CartView } from './CartView';
 import { ProductsList } from './ProductsList';
+import { TShopId, IProductsData, IDelivery } from './types';
 
 const PRODUCTS_DATA = [
   { id: 1, name: 'keyboard', price: 80 },
@@ -12,15 +13,7 @@ const PRODUCTS_DATA = [
   { id: 7, name: 'GPU', price: 1000 },
 ];
 
-type TShopId = 1 | 2 | 3 | 4 | 5 | 6;
-
-interface IProductsData {
-  id: number;
-  name: string;
-  price: number;
-}
-
-class Delivery {
+class Delivery implements IDelivery {
   date?: Date | string;
   userAddress?: string;
   shopId?: TShopId;
@@ -36,9 +29,11 @@ class Delivery {
   }
 }
 
+// type TAddToCart = (id: number) => void;
+
 class Cart extends Delivery {
-  products?: IProductsData[];
-  totalPrice?: number;
+  products!: IProductsData[];
+  totalPrice?: number = 0;
 
   constructor(products?: IProductsData[]) {
     super();
@@ -47,70 +42,121 @@ class Cart extends Delivery {
 
   addToCart(id: number) {
     const item = PRODUCTS_DATA.find(p => id === p.id);
-    const isProductsExist = Array.isArray(this.products);
 
-    // if (item && isProductsExist) {
-    //   this.products.push(item);
-    // }
-
-    if (item && Array.isArray(this.products)) {
+    if (item) {
       this.products.push(item);
     }
   }
 
   removeFromCart(id: number) {
-    if (Array.isArray(this.products)) {
-      this.products = this.products.filter(p => p.id !== id);
-    }
-    // const updProducts = this.products.filter(p => p.id !== id);
-    // console.log(updProducts, 'updProducts');
-    // this.products = updProducts;
+    this.products = this.products.filter(p => p.id !== id);
   }
 
   countTotalPrice() {
-    if (Array.isArray(this.products)) {
-      this.totalPrice = this.products.reduce((prev, product) => {
-        return prev + product.price;
-      }, 0);
-
-      // this.products.reduce((prev, product) => {
-      //   return prev + product.price;
-      // }, 0);
-    }
+    this.totalPrice = this.products.reduce((prev, product) => {
+      return prev + product.price;
+    }, 0);
   }
-  checkoutCartConditions(): boolean {
+
+  checkoutCartConditions() {
     const isDeliverySelected = this.userAddress || this.shopId;
     return Boolean(isDeliverySelected && this.products);
   }
 }
 
-const order = new Cart();
-// console.log();
-// order.homeDelivery('12.10.2022', 'Cherkasy');
-order.selfDelivery(4);
-console.log(order.checkoutCartConditions());
-// order.addToCart({ id: 24, name: 'Cooler', price: 50 });
+// const order = new Cart();
+// // order.homeDelivery('12.10.2022', 'Cherkasy');
+// order.selfDelivery(4);
+// console.log(order.checkoutCartConditions());
 
-order.addToCart(1);
-order.addToCart(3);
-order.addToCart(5);
-order.addToCart(6);
+// order.addToCart(1);
+// order.addToCart(3);
+// order.addToCart(5);
+// order.addToCart(6);
 
-order.removeFromCart(2);
-order.removeFromCart(6);
-order.removeFromCart(3);
-order.countTotalPrice();
-console.log(order);
+// order.removeFromCart(2);
+// order.removeFromCart(6);
+// order.removeFromCart(3);
+// order.countTotalPrice();
+// // console.log(order);
+// console.log(console);
+
+interface IProps {
+  initialValue: number;
+}
+
+interface IState {
+  productsData: IProductsData[];
+  // cartData: IProductsData[];
+  date: Date | string;
+  userAddress: string;
+  shopId: TShopId | null;
+}
 
 class OnlineShop extends Component {
+  // <IProps, IState>
+  state: IState = {
+    productsData: [],
+    // cartData: [],
+    date: new Date(),
+    userAddress: '',
+    shopId: null,
+  };
+
+  addToCart = (id: number): void => {
+    const product = PRODUCTS_DATA.find((p: IProductsData) => id === p.id);
+
+    this.setState(prev => {
+      return { ...prev, productsData: [...this.state.productsData, product] };
+    });
+
+    // const { setState, state } = this;
+    // const product = PRODUCTS_DATA.find((p: IProductsData) => id === p.id);
+    // setState(prev => {
+    //   return { ...prev, productsData: [...state.productsData, product] };
+    // });
+  };
+
+  removeFromCart(id: number) {
+    const { productsData } = this.state;
+    // const { state } = this;
+    const filteredData = productsData.filter((p: IProductsData) => p.id !== id);
+    // this.setState(prev => {
+    //   return prev.this.state, {};
+    //   // [...prev.state, ...filteredData];
+    // });
+    this.setState(prev => {
+      console.log(prev);
+      return { ...prev, ...filteredData };
+    });
+  }
+
+  // countTotalPrice() {
+  //   this.totalPrice = this.products.reduce((prev, product: IProductsData) => {
+  //     return prev + product.price;
+  //   }, 0);
+  // }
+
+  // checkoutCartConditions() {
+  //   const isDeliverySelected = this.userAddress || this.shopId;
+  //   return Boolean(isDeliverySelected && this.productsData);
+  // }
+
   render() {
+    const { addToCart, removeFromCart } = this;
+    const { productsData } = this.state;
+    console.log(productsData);
+
     return (
       <>
-        <ProductsList />
-        <CartView />
+        <ProductsList products={PRODUCTS_DATA} addToCart={addToCart} />
+        <CartView
+        // removeFromCart={removeFromCart}
+        />
       </>
     );
   }
 }
-
+// const foo = new OnlineShop({});
+// foo.removeFromCart(1);
 export default OnlineShop;
