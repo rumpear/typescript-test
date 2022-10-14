@@ -64,30 +64,12 @@ class Cart extends Delivery {
   }
 }
 
-// const order = new Cart();
-// // order.homeDelivery('12.10.2022', 'Cherkasy');
-// order.selfDelivery(4);
-// console.log(order.checkoutCartConditions());
-
-// order.addToCart(1);
-// order.addToCart(3);
-// order.addToCart(5);
-// order.addToCart(6);
-
-// order.removeFromCart(2);
-// order.removeFromCart(6);
-// order.removeFromCart(3);
-// order.countTotalPrice();
-// // console.log(order);
-// console.log(console);
-
 interface IProps {
   initialValue: number;
 }
 
 interface IState {
   productsData: IProductsData[];
-  // cartData: IProductsData[];
   date: Date | string;
   userAddress: string;
   shopId: TShopId | null;
@@ -97,7 +79,6 @@ class OnlineShop extends Component {
   // <IProps, IState>
   state: IState = {
     productsData: [],
-    // cartData: [],
     date: new Date(),
     userAddress: '',
     shopId: null,
@@ -118,17 +99,20 @@ class OnlineShop extends Component {
   };
 
   removeFromCart(id: number) {
-    const { productsData } = this.state;
+    // const { productsData } = this.state;
     // const { state } = this;
-    const filteredData = productsData.filter((p: IProductsData) => p.id !== id);
+    const filteredData = this.state.productsData.filter(
+      (p: IProductsData) => p.id !== id,
+    );
     // this.setState(prev => {
     //   return prev.this.state, {};
     //   // [...prev.state, ...filteredData];
     // });
-    this.setState(prev => {
-      console.log(prev);
-      return { ...prev, ...filteredData };
-    });
+    // this.setState(prev => {
+    //   // console.log(prev);
+    //   return { ...prev, ...filteredData };
+    // });
+    this.setState({ productsData: filteredData });
   }
 
   // countTotalPrice() {
@@ -145,14 +129,12 @@ class OnlineShop extends Component {
   render() {
     const { addToCart, removeFromCart } = this;
     const { productsData } = this.state;
-    console.log(productsData);
+    console.log(productsData, 'productsData OnlineShop');
 
     return (
       <>
         <ProductsList products={PRODUCTS_DATA} addToCart={addToCart} />
-        <CartView
-        // removeFromCart={removeFromCart}
-        />
+        <CartView products={productsData} removeFromCart={removeFromCart} />
       </>
     );
   }
