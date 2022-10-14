@@ -1,15 +1,5 @@
 import { useState } from 'react';
 
-const PRODUCTS_DATA = [
-  { id: 1, name: 'keyboard', price: 80 },
-  { id: 2, name: 'mouse', price: 120 },
-  { id: 3, name: 'gamepad', price: 80 },
-  { id: 4, name: 'RAM', price: 100 },
-  { id: 5, name: 'display', price: 700 },
-  { id: 6, name: 'motherboard', price: 200 },
-  { id: 7, name: 'GPU', price: 1000 },
-];
-
 interface IProductsData {
   id: number;
   name: string;
@@ -25,7 +15,6 @@ const ProductsList = ({ products, addToCart }: IProps) => {
   const [productsData, setProductsData] = useState<IProductsData[]>(products);
 
   const handleAddProduct = (id: number): void => {
-    console.log(id);
     addToCart(id);
   };
 
