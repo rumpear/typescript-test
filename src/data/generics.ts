@@ -2,7 +2,7 @@
 
 type reverseFn = <T>(arr: T[]) => T[];
 
-const reverseArr: reverseFn = (arr) => {
+const reverseArr: reverseFn = arr => {
   return [...arr].reverse();
 };
 
@@ -32,7 +32,7 @@ interface IPerson {
 const addFullName = <T extends IPerson>(person: T) => {
   return {
     ...person,
-    fullName: person.name + " " + person.surname,
+    fullName: person.name + ' ' + person.surname,
   };
 };
 
@@ -47,14 +47,14 @@ interface ITab<T> {
 }
 
 const Tab: ITab<string> = {
-  id: "1",
+  id: '1',
   position: 0,
   isActive: true,
-  content: "Active tab",
+  content: 'Active tab',
 };
 
 const oldTab: ITab<null> = {
-  id: "2",
+  id: '2',
   position: 33,
   isActive: false,
   content: null,
@@ -62,7 +62,7 @@ const oldTab: ITab<null> = {
 
 // console.log(Tab, oldTab);
 
-type TAnimationType = "playing" | "paused";
+type TAnimationType = 'playing' | 'paused';
 type THttpStatus = 200 | 404 | 500;
 
 const makeState = <T>(initialState: T) => {
@@ -78,7 +78,7 @@ const makeState = <T>(initialState: T) => {
   return { getState, setState };
 };
 
-const animationState = makeState<TAnimationType>("playing");
+const animationState = makeState<TAnimationType>('playing');
 console.log(animationState.getState());
 
 const httpState = makeState<THttpStatus>(404);
