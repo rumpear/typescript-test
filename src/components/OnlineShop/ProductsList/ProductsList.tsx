@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import s from './ProductsList.module.css';
 
 interface IProductsData {
   id: number;
@@ -19,13 +20,13 @@ const ProductsList = ({ products, addToCart }: IProps) => {
   };
 
   return (
-    <div className="wrapper">
+    <div className={s.wrapper}>
       {productsData ? (
         productsData.map(({ id, name, price }) => {
           return (
-            <div key={id}>
+            <div className={s.card} key={id}>
               <h5>{name}</h5>
-              <h6>{price}</h6>
+              <h6>price {price}$</h6>
               <button type="button" onClick={() => handleAddProduct(id)}>
                 Add to cart
               </button>
