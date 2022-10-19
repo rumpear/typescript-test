@@ -1,0 +1,4 @@
+.controlsWrapper {
+    display: flex;
+    gap: 20px;
+}

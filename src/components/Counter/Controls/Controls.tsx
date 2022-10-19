@@ -1,13 +1,14 @@
-import { ButtonIcon } from '../../ui/ButtonIcon';
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai';
+import { ButtonIcon } from '../../ui/ButtonIcon';
+import s from './Controls.module.css';
 
-interface Props {
+interface IProps {
   onIncrement: () => void;
   onDecrement: () => void;
 }
 
-const Controls = ({ onIncrement, onDecrement }: Props) => (
-  <div>
+const Controls = ({ onIncrement, onDecrement }: IProps) => (
+  <div className={s.controlsWrapper}>
     <ButtonIcon onClick={onIncrement} aria-label="increment counter">
       <AiFillPlusCircle size={30} />
     </ButtonIcon>
