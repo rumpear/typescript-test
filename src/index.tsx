@@ -1,18 +1,25 @@
-import React from 'react';
+// import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App';
 import './index.css';
-// import '../src/data/types';
-// import '../src/data/generics';
-// import '../src/data/practice';
-// import '../src/data/practiceEnum';
-// import '../src/data/enum';
-// import '../src/data/additionalTypes';
-// import './data/classes/overload';
-// import './data/classes/methods';
-// import './data/classes/getSet';
-// import './data/classes/extends';
-// import './data/classes/practice';
+
+// import '../src/tsPractice/basicTypes';
+// import './tsPractice/generics';
+// import '../src/tsPractice/practice';
+// import '../src/tsPractice/practiceEnum';
+// import '../src/tsPractice/enum';
+// import '../src/tsPractice/additionalTypes';
+
+// * classes
+// import './tsPractice/classes/overload';
+// import './tsPractice/classes/methods';
+// import './tsPractice/classes/getSet';
+// import './tsPractice/classes/extends';
+// import './tsPractice/classes/practice';
+// import './tsPractice/classes/abstract';
+
+// *
+// import './tsPractice/workWithTypes/keyof';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
