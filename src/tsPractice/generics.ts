@@ -1,5 +1,8 @@
 // * generic fn
 
+import { PRODUCTS_DATA } from '../components/OnlineShop/data';
+import { IProductsData, TSortObjType } from './types';
+
 type reverseFn = <T>(arr: T[]) => T[];
 
 const reverseArr: reverseFn = arr => {
@@ -79,9 +82,51 @@ const makeState = <T>(initialState: T) => {
 };
 
 const animationState = makeState<TAnimationType>('playing');
-console.log(animationState.getState());
+// console.log(animationState.getState());
 
 const httpState = makeState<THttpStatus>(404);
-console.log(httpState.getState());
+// console.log(httpState.getState());
+
+const toString = <T>(value: T): string => {
+  if (Array.isArray(value)) {
+    return value.toString();
+  }
+
+  switch (typeof value) {
+    case 'string':
+      return value;
+
+    case 'object':
+      return JSON.stringify(value);
+
+    case 'number':
+    case 'bigint':
+    case 'boolean':
+    case 'symbol':
+      return value.toString();
+
+    default:
+      return 'Something went wrong';
+  }
+};
+
+const string = toString([33, 77, 37]);
+// console.log(string, 'string');
+
+const sortObj = <T extends IProductsData>(
+  data: T[],
+  type: TSortObjType,
+): T[] => {
+  const ascendingSort = type === 'ascending';
+
+  const sortedData = [...data].sort((a, b) => {
+    return ascendingSort ? a.price - b.price : b.price - a.price;
+  });
+
+  return sortedData;
+};
+
+// console.log(sortObj<IProductsData>(PRODUCTS_DATA, 'ascending'), 'ascending');
+// console.log(sortObj(PRODUCTS_DATA, 'descending'), 'descending');
 
 export {};
