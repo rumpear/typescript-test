@@ -4,47 +4,71 @@ import { IDeliveryOptions, IShopId } from '../types';
 interface IPropsDelivery {
   shopList: IShopId[];
   deliveryOptions: IDeliveryOptions[];
-  makeOrder: (type: any, value: any) => void;
+  makeOrder: (value: string | IShopId) => void;
+  setOrderStatus: (status: boolean) => void;
 }
 
-const Delivery = ({ shopList, deliveryOptions, makeOrder }: IPropsDelivery) => {
-  const [deliveryType, setDeliveryType] = useState<IDeliveryOptions>(
-    deliveryOptions[0],
-  );
-  const [homeAddress, setHomeAddress] = useState<string>('');
-  const [shopAddress, setShopAddress] = useState<IShopId>(shopList[0]);
+const Delivery = ({
+  shopList,
+  deliveryOptions,
+  setOrderStatus,
+  makeOrder,
+}: IPropsDelivery) => {
+  const [initDeliveryOption] = deliveryOptions;
+  const [initShop] = shopList;
 
-  console.log(deliveryType, 'deliveryType');
+  const [deliveryType, setDeliveryType] =
+    useState<IDeliveryOptions>(initDeliveryOption);
+  const [homeAddress, setHomeAddress] = useState<string>('');
+  const [shopAddress, setShopAddress] = useState<IShopId | null>(initShop);
 
   const homeDelivery = deliveryType.id === 0;
   const selfDelivery = deliveryType.id === 1;
 
   const handleDeliveryOptionsSelect = (
     e: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
+  ): void => {
     const { value } = e.target;
     const selectedDelivery = deliveryOptions[+value];
 
     setDeliveryType(selectedDelivery);
+    setOrderStatus(false);
   };
 
-  const handleInputAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputAddressChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
     const { value } = e.target;
     setHomeAddress(value);
-    makeOrder(deliveryType.label, homeAddress);
   };
 
-  const handleShopAddressSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleShopAddressSelect = (
+    e: React.ChangeEvent<HTMLSelectElement>,
+  ): void => {
     const { value } = e.target;
     const currentShop = shopList[+value];
     setShopAddress(currentShop);
   };
 
-  const handleOrderSubmit = () => {};
+  const handleOrderSubmit = (): void => {
+    setOrderStatus(true);
+
+    if (shopAddress && deliveryType.label === 'self') {
+      return makeOrder(shopAddress);
+    }
+
+    if (!homeAddress) {
+      return alert('Add your home address');
+    }
+
+    if (deliveryType.label === 'home') {
+      return makeOrder(homeAddress);
+    }
+  };
 
   return (
     <>
-      <h1>Chose delivery options</h1>
+      <h3>Chose delivery options</h3>
       <select name="deliveryOptions" onChange={handleDeliveryOptionsSelect}>
         {deliveryOptions.length &&
           deliveryOptions.map(({ id, label }) => {
@@ -64,8 +88,12 @@ const Delivery = ({ shopList, deliveryOptions, makeOrder }: IPropsDelivery) => {
             value={homeAddress}
             onChange={handleInputAddressChange}
           />
+          <button type="submit" onClick={handleOrderSubmit}>
+            Submit
+          </button>
         </>
       )}
+
       {selfDelivery && (
         <>
           <h5>Shop addresses</h5>
@@ -78,6 +106,9 @@ const Delivery = ({ shopList, deliveryOptions, makeOrder }: IPropsDelivery) => {
               );
             })}
           </select>
+          <button type="submit" onClick={handleOrderSubmit}>
+            Submit
+          </button>
         </>
       )}
     </>
