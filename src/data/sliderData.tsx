@@ -1,43 +1,43 @@
+import tree from '../assets/tree.webp';
+import flowers from '../assets/flowers.webp';
+import avenue from '../assets/avenue.webp';
+import alps from '../assets/alps.jpg';
+import autumn from '../assets/autumn.jpeg';
+
 export const PHOTOS_ARR = [
   {
-    title: 'Delectus vero id consequatur dolore vel.',
-    image: 'http://loremflickr.com/640/480/business',
+    title: 'Delectus vero 1',
+    image: tree,
     annotation:
-      'Quas et praesentium enim ea molestiae. Ut at aliquid facilis in perferendis corporis magnam sint facilis. Sit sapiente dolorem aut enim provident illo iusto suscipit. Laudantium hic et autem veniam voluptas ut voluptate minima nesciunt. Est delectus ea ut sed vitae.',
-    tag: 'Computer',
-    id: '1',
+      'Quas et praesentium enim ea molestiae. Ut at aliquid facilis in perferendis corporis',
+    id: 1,
   },
   {
-    title: 'Illo officiis nemo aut quis voluptates.',
-    image: 'http://loremflickr.com/640/480/people',
+    title: 'Illo officiis 2',
+    image: flowers,
     annotation:
-      'Quod aliquid consequatur iusto velit error sed nihil. Eum cum consequatur. Enim saepe quis omnis earum odio sit tempore tempora.',
-    tag: 'Keyboard',
-    id: '2',
+      'Quod aliquid consequatur iusto velit error sed nihil. Eum cum consequatur',
+    id: 2,
   },
   {
-    title: 'Aspernatur consectetur debitis facilis deleniti.',
-    image: 'http://loremflickr.com/640/480/cats',
-    annotation:
-      'Porro voluptas ut. Impedit mollitia mollitia ea totam in. Est esse ut eum est mollitia iste eos qui cupiditate. Voluptatem natus similique.',
-    tag: 'Shoes',
-    id: '3',
+    title: 'Aspernatur totam 3',
+    image: avenue,
+    annotation: 'Porro voluptas ut. Impedit mollitia mollitia ea totam in',
+    id: 3,
   },
   {
-    title: 'Sed sint maiores voluptate odio atque.',
-    image: 'http://loremflickr.com/640/480/food',
+    title: 'Sed sint 4',
+    image: alps,
     annotation:
-      'Non possimus ut quis. Corrupti earum praesentium error est dicta. Vel ipsa nostrum tempora.',
-    tag: 'Chips',
-    id: '4',
+      'Non possimus ut quis. Corrupti earum praesentium error est dicta',
+    id: 4,
   },
   {
-    title: 'Aut laborum quasi.',
-    image: 'http://loremflickr.com/640/480/transport',
+    title: 'Aut laborum 5',
+    image: autumn,
     annotation:
-      'Et molestias placeat nobis. Natus porro et. Voluptatem provident numquam fugiat et dolorem hic.',
-    tag: 'Bacon',
-    id: '5',
+      'Et molestias placeat nobis. Natus porro et. Voluptatem provident',
+    id: 5,
   },
 ];
 
