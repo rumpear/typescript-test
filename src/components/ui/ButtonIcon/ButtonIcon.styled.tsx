@@ -20,13 +20,15 @@ export const Button = styled.button`
 
   line-height: 1.87;
   letter-spacing: 0.06em;
-  color: red;
-  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: #484848;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
   cursor: pointer;
 
   :hover {
     background-color: rgba(77, 77, 77, 0.1);
+    color: #dbdbdb;
   }
 
   :last-child {
