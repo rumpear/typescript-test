@@ -1,7 +1,8 @@
 // import { Counter, CounterClass } from './Counter';
 // import { Form } from './Form';
-import { OnlineShop } from './OnlineShop';
+// import { OnlineShop } from './OnlineShop';
 import './App.css';
+import { Slider } from './Slider';
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
         {/* <Counter />
         <CounterClass initialValue={1} />
         <Form /> */}
-        <OnlineShop />
+        {/* <OnlineShop /> */}
+        <Slider />
       </header>
     </div>
   );
