@@ -23,8 +23,12 @@
     /* scroll-behavior: smooth; */
 
     /* transform: translateX(5); */
-    transition: all 0.6s ease-in-out;
+    /* transition: all 0.6s ease-in-out; */
     /* transition: all 1s; */
+    /* -webkit-animation: slide 1s 1; */
+    /* transform: scale(0.95); */
+    /* animation: fadeVisibility 1s; */
+
 }
 
 
@@ -33,7 +37,8 @@
     position: absolute;
     z-index: 0;
     bottom: 40px;
-    transition: all 0.6s ease-in-out;
+    /* transition: all 0.6s ease-in-out; */
+    /* -webkit-animation: slide 1s 1; */
 }
 
 .thirdCard {
@@ -42,7 +47,8 @@
     position: absolute;
     z-index: 0;
     bottom: 75px;
-    transition: all 0.6s ease-in-out;
+    /* transition: all 0.6s ease-in-out; */
+    /* -webkit-animation: slide 1s 1; */
 }
 
 .cardTitle {
@@ -96,11 +102,100 @@
 @keyframes fadeVisibility {
     0% {
         opacity: 0.1;
-        /* transform: translateX(-50px); */
+        /* transform: translateX(-50px);  */
+        /* transform: scale(0.9); */
     }
 
     100% {
         opacity: 1;
         /* transform: translateX(-100px); */
+        /* transform: scale(1); */
+    }
+}
+
+html {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+/* *,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.thumbnails {
+    display: flex;
+    flex-direction: column;
+    line-height: 0;
+
+    li {
+        flex: auto;
+    }
+
+    a {
+        display: block;
+    }
+
+    img {
+        width: 30vmin;
+        height: 20vmin;
+        object-fit: cover;
+        object-position: top;
+    }
+}
+
+.slides {
+    overflow: hidden;
+    width: 75vmin;
+    height: 100vmin;
+
+    li {
+        width: 75vmin;
+        height: 100vmin;
+        position: absolute;
+        z-index: 1;
+    }
+
+    img {
+        height: 100vmin;
+        object-fit: cover;
+        object-position: top;
+    }
+} */
+
+.slides li:target {
+    z-index: 3;
+    -webkit-animation: slide 1s 1;
+}
+
+.slides li:not(:target) {
+    -webkit-animation: hidden 1s 1;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes hidden {
+    0% {
+        z-index: 2;
+    }
+
+    100% {
+        z-index: 2;
     }
 }
