@@ -1,11 +1,5 @@
-import { useState } from 'react';
+import { IProductsData } from '../types';
 import s from './ProductsList.module.css';
-
-interface IProductsData {
-  id: number;
-  name: string;
-  price: number;
-}
 
 interface IProps {
   products: IProductsData[];
@@ -13,16 +7,14 @@ interface IProps {
 }
 
 const ProductsList = ({ products, addToCart }: IProps) => {
-  const [productsData, setProductsData] = useState<IProductsData[]>(products);
-
   const handleAddProduct = (id: number): void => {
     addToCart(id);
   };
 
   return (
     <div className={s.wrapper}>
-      {productsData ? (
-        productsData.map(({ id, name, price }) => {
+      {products ? (
+        products.map(({ id, name, price }) => {
           return (
             <div className={s.card} key={id}>
               <h5>{name}</h5>
@@ -30,10 +22,6 @@ const ProductsList = ({ products, addToCart }: IProps) => {
               <button type="button" onClick={() => handleAddProduct(id)}>
                 Add to cart
               </button>
-
-              {/* <button type="button" onClick={handleAddProduct}>
-                Remove from cart
-              </button> */}
             </div>
           );
         })
