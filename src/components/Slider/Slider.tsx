@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { Cards } from './Cards';
 import { ButtonIcon } from '../ui/ButtonIcon';
+import { useThrottle } from '../../hooks/useThrottle';
 import { PHOTOS_ARR } from '../../data/';
 import { ICard, TCardAnimationType } from './types';
 import s from './Slider.module.css';
@@ -27,16 +28,25 @@ const Slider = () => {
     setCardAnimationType('forward');
   }, [totalSlidesIdx]);
 
-  const handleArrowBtnsClick = useCallback(
+  const THROTTLED_TIME = 1000;
+  const showPrevCardThrottled = useThrottle(showPrevCard, THROTTLED_TIME);
+  const showNextCardThrottled = useThrottle(showNextCard, THROTTLED_TIME);
+
+  const handleArrowsKeydown = useCallback(
     (e: KeyboardEvent) => {
       if (e.code === 'ArrowLeft') {
-        showPrevCard();
+        showPrevCardThrottled();
       }
       if (e.code === 'ArrowRight') {
-        showNextCard();
+        showNextCardThrottled();
       }
     },
-    [showNextCard, showPrevCard],
+    [showPrevCardThrottled, showNextCardThrottled],
+  );
+
+  const handleArrowsKeydownThrottled = useThrottle(
+    handleArrowsKeydown,
+    THROTTLED_TIME,
   );
 
   useEffect(() => {
@@ -46,15 +56,15 @@ const Slider = () => {
   }, [cards.length]);
 
   useEffect(() => {
-    window.addEventListener('keydown', handleArrowBtnsClick);
+    window.addEventListener('keydown', handleArrowsKeydownThrottled);
     return () => {
-      window.removeEventListener('keydown', handleArrowBtnsClick);
+      window.removeEventListener('keydown', handleArrowsKeydownThrottled);
     };
-  }, [handleArrowBtnsClick]);
+  }, [handleArrowsKeydownThrottled]);
 
   return (
     <div className={s.wrapper}>
-      <ButtonIcon onClick={showPrevCard}>
+      <ButtonIcon onClick={showPrevCardThrottled}>
         <AiOutlineArrowLeft />
       </ButtonIcon>
 
@@ -64,7 +74,7 @@ const Slider = () => {
         cardAnimationType={cardAnimationType}
       />
 
-      <ButtonIcon onClick={showNextCard}>
+      <ButtonIcon onClick={showNextCardThrottled}>
         <AiOutlineArrowRight />
       </ButtonIcon>
     </div>
