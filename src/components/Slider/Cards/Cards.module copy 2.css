@@ -11,51 +11,18 @@
     position: relative;
     flex-direction: column;
     margin: 40px;
+    /* transform-style: preserve-3d; */
 }
 
 .firstCard {
-    /* position: relative; */
-    /* position: absolute; */
-    z-index: 2;
-
-    /* animation: fadeVisibility 1s; */
-    /* scroll-behavior: smooth; */
-
-    /* transform: translateX(5); */
-    /* transition: all 0.6s ease-in-out; */
-    /* transition: all 1s; */
-    /* -webkit-animation: slide 1s 1; */
-    /* transform: scale(0.95); */
-    /* animation: fadeVisibility 1s; */
-    /* -webkit-animation: slide 1s 1; */
-
+    z-index: 1;
+    /* transform: scale(1) translate3d(-30px); */
 }
 
 .firstCardAnimate {
-    /* position: relative; */
-    /* position: absolute; */
-    /* z-index: 1; */
-
-    /* animation: fadeVisibility 1s; */
-    /* scroll-behavior: smooth; */
-
-    /* transform: translateX(5); */
-    /* transition: all 0.6s ease-in-out; */
-    /* transition: all 1s; */
-    /* -webkit-animation: slide 1s 1; */
-    /* transform: scale(0.95); */
-    /* animation: fadeVisibility 1s; */
-    -webkit-animation: scaleUp 1s 1;
-    /* transform: scale(0.95); */
-
-    /* transform: scale(0.95); */
-    /* position: absolute; */
-    /* z-index: 5;
-    bottom: 40px; */
     z-index: 2;
-    /* -webkit-animation: fadeVisibility 1s 1; */
-
-    /* transition: all 1s ease-in-out; */
+    /* transform: scale(1) translate3d(30px); */
+    animation: scaleUp 1s 1;
 }
 
 .secondCard {
@@ -63,6 +30,9 @@
     position: absolute;
     z-index: 1;
     bottom: 40px;
+
+    /*  */
+
     /* transition: all 0.6s ease-in-out; */
     /* -webkit-animation: slide 1s 1; */
 }
@@ -99,12 +69,7 @@
 
     /*  */
     transition: all 1s ease-in-out;
-    -webkit-animation: scaleDown 1s 1;
-}
-
-.Card {
-
-    &-first {}
+    animation: scaleDown 1s 1;
 }
 
 .thirdCard {
@@ -112,13 +77,15 @@
     /* transform: translateX(25%, 25%); */
 
     position: absolute;
-    /* z-index: 0; */
+    z-index: 1;
     /* z-index: 30; */
     bottom: 75px;
 
-    transition: all 1 ease-in-out;
-    -webkit-animation: slide 1s 1;
+    /* transition: all 1 ease-in-out;
+    -webkit-animation: scaleDownMax 1s 1; */
 }
+
+
 
 .thirdCardAnimate {
     /* transition: all 0.6s ease-in-out; */
@@ -129,52 +96,64 @@
     /* z-index: 30; */
     /* bottom: 75px; */
 
-    position: absolute;
-    /* z-index: 0; */
+    transform: scale(0.90);
     bottom: 75px;
+    position: absolute;
+    z-index: 0;
 
     /*  */
 
-    transform: scale(0.90);
-    -webkit-animation: scaleDownMax 1s 1;
+    /* -webkit-animation: scaleDownMax 1s 1; */
 }
 
 
 @keyframes scaleUp {
     0% {
         /* z-index: 1; */
-        transform: scale(0.9);
-        opacity: 0.1;
+        z-index: 1;
 
+        /* transform: scale(0.9); */
+        /* opacity: 0.1; */
+        transform: scale(0.9) translate3d(0px, 0px, 0px);
+        /* transform: scale(1) translate3d(-100px, -100px, -100px); */
         /* transform: scale(0.9) translateY(20px) */
-        /* transform: scale(1) translate3d(20px, 20px, 29px); */
+        /* transform: scale(0.9) translate3d(0px, 0px, 0px); */
     }
 
     100% {
         /* z-index: 2; */
-        opacity: 1;
-        transform: scale(1);
+        z-index: 1;
+        /* opacity: 1; */
+        /* transform: scale(1); */
         /* transform: scale(1) translateY(-15px) */
-        /* transform: scale(1) translate3d(0px, 0px, 0px); */
+
+        transform: scale(1) translate3d(0px, -100px, 0px);
     }
 }
 
 @keyframes scaleDown {
     0% {
-        z-index: 2;
-        transform: scale(1);
+        z-index: 0;
+        /* opacity: 0.1; */
+        /* transform: scale(1); */
+
+        /* transform: scale(0.95) translate3d(0); */
+        transform: scale(0.9) translate3d(0px, -10px, 0px);
         /* transform: scale(1) translate3d(0px, 20px, 29px); */
         /* transform: scale(1) translateY(40px) */
-        bottom: 0px;
+        /* bottom: 0px; */
     }
 
     100% {
-        z-index: 1;
+        z-index: 2;
+        /* opacity: 1; */
+        /* transform: scale(0.95); */
 
-        transform: scale(0.95);
-        /* transform: scale(0.95) translate3d(50px, 50px, 50px); */
+        transform: scale(1) translate3d(0px, 50px, 0px);
+
+        /* transform: scale(0.95) translate3d(300px); */
         /* transform: scale(0.95) translateY(-50px); */
-        bottom: 40px;
+        /* bottom: 40px; */
 
     }
 }
@@ -184,7 +163,8 @@
         z-index: 2;
         transform: scale(0.95);
         opacity: 0.1;
-        /* transform: scale(1) translate3d(0px, 20px, 29px); */
+
+        transform: scale(1) translate3d(0);
         /* transform: scale(1) translateY(40px) */
         /* bottom: 0px; */
     }
@@ -192,9 +172,10 @@
     100% {
         z-index: 1;
 
-        transform: scale(0.90);
+        /* transform: scale(0.90); */
         opacity: 1;
-        /* transform: scale(0.95) translate3d(50px, 50px, 50px); */
+
+        transform: scale(0.95) translate3d(-500px);
         /* transform: scale(0.95) translateY(-50px); */
         /* bottom: 40px; */
 
@@ -202,9 +183,7 @@
 }
 
 
-
 /*  */
-
 
 
 
@@ -231,18 +210,6 @@
         0 -1px 0 black,
         1px 0 0 black,
         0 1px 0 black;
-}
-
-
-.activeCard {
-    transition: all 0.6s ease-in-out;
-    /* transform: translate(-25%, 0%); */
-    /* transform: translate(0%, 380px); */
-    /* transform: translate(0%, -380px); */
-    transform: scale(0.95);
-    position: absolute;
-    z-index: 0;
-    top: 0px;
 }
 
 .cardThumb {

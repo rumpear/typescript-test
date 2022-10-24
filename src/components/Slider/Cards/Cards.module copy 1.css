@@ -102,11 +102,6 @@
     -webkit-animation: scaleDown 1s 1;
 }
 
-.Card {
-
-    &-first {}
-}
-
 .thirdCard {
     transform: scale(0.90);
     /* transform: translateX(25%, 25%); */
