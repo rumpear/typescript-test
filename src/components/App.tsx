@@ -1,8 +1,8 @@
 // import { Counter, CounterClass } from './Counter';
 // import { Form } from './Form';
 // import { OnlineShop } from './OnlineShop';
-import './App.css';
 import { Slider } from './Slider';
+import './App.css';
 
 function App() {
   return (

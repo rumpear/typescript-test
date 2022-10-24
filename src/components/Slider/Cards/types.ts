@@ -1,6 +1,7 @@
-import { ICard } from '../types';
+import { ICard, TCardAnimationType } from '../types';
 
 export interface ICardsProps {
   cardsData: ICard[];
-  isCardAnimated: boolean;
+  currentSlide: number;
+  cardAnimationType: TCardAnimationType;
 }
