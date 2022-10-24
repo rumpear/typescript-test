@@ -25,20 +25,6 @@ export const PHOTOS_ARR = [
     annotation: 'Porro voluptas ut. Impedit mollitia mollitia ea totam in',
     id: 3,
   },
-  // {
-  //   title: 'Sed sint 4',
-  //   image: alps,
-  //   annotation:
-  //     'Non possimus ut quis. Corrupti earum praesentium error est dicta',
-  //   id: 4,
-  // },
-  // {
-  //   title: 'Aut laborum 5',
-  //   image: autumn,
-  //   annotation:
-  //     'Et molestias placeat nobis. Natus porro et. Voluptatem provident',
-  //   id: 5,
-  // },
 ];
 
 export const PHOTOS_ARR_MAX = [
@@ -165,3 +151,5 @@ export const PHOTOS_ARR_MAX = [
     id: '15',
   },
 ];
+
+export const TOTAL_SLIDES_COUNT = ['First', 'Second', 'Third'];
