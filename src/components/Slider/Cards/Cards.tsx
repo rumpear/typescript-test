@@ -3,7 +3,7 @@ import { TOTAL_SLIDES_COUNT } from '../../../data';
 import { ICardsProps } from './types';
 import s from './Cards.module.css';
 
-const Cards = ({ cardsData, currentSlide, cardAnimationType }: ICardsProps) => {
+const Cards = ({ cardsData, currentSlide, animationType }: ICardsProps) => {
   const cx = classNames.bind(s);
 
   return (
@@ -17,7 +17,7 @@ const Cards = ({ cardsData, currentSlide, cardAnimationType }: ICardsProps) => {
                 key={slide}
                 className={cx([
                   `card${arr[currIndex]}`,
-                  { [cardAnimationType]: cardAnimationType },
+                  { [animationType]: animationType },
                 ])}
               >
                 <h1 className={s.cardTitle}>{cardsData[currentSlide].title}</h1>

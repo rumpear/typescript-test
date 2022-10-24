@@ -71,7 +71,7 @@ const Slider = () => {
       <Cards
         cardsData={cards}
         currentSlide={currentSlide}
-        cardAnimationType={cardAnimationType}
+        animationType={cardAnimationType}
       />
 
       <ButtonIcon onClick={showNextCardThrottled}>
