@@ -4,3 +4,5 @@ export interface ICard {
   annotation: string;
   id: number;
 }
+
+export type TCardAnimationType = 'forward' | 'back' | '';
