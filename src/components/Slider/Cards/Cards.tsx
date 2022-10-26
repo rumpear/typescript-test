@@ -9,7 +9,7 @@ const Cards = ({ cardsData, currentSlide, animationType }: ICardsProps) => {
   return (
     <>
       {cardsData.length ? (
-        <div className={s.cardWrapper}>
+        <div className={s.wrapper}>
           {TOTAL_SLIDES_COUNT.map((slide, idx, arr) => {
             const currIndex = (idx + currentSlide) % arr.length;
             return (
@@ -20,17 +20,17 @@ const Cards = ({ cardsData, currentSlide, animationType }: ICardsProps) => {
                   { [animationType]: animationType },
                 ])}
               >
-                <h1 className={s.cardTitle}>{cardsData[currentSlide].title}</h1>
-                <p className={s.cardAnnotation}>
+                <h1 className={s.title}>{cardsData[currentSlide].title}</h1>
+                <p className={s.annotation}>
                   {cardsData[currentSlide].annotation}
                 </p>
-                <div className={s.cardThumb} />
+                <div className={s.thumb} />
               </div>
             );
           })}
         </div>
       ) : (
-        <h1>Something went wrong</h1>
+        <p className={s.errorMessage}>Something went wrong</p>
       )}
     </>
   );

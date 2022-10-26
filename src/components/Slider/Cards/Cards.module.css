@@ -1,4 +1,4 @@
-.cardWrapper {
+.wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,22 +52,21 @@
     animation: thirdBack 1s 1;
 }
 
-.cardTitle {
+.title {
     position: absolute;
     top: 60px;
     left: 100px;
 
 }
 
-.cardAnnotation {
+.annotation {
     position: absolute;
     top: 180px;
     left: 50px;
     width: 800px;
 }
 
-
-.cardThumb {
+.thumb {
     width: 960px;
     height: 400px;
 
