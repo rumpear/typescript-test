@@ -1,23 +1,37 @@
-import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { useState, useEffect } from 'react';
 
-type UseLocalStorage = <T>(
+type TUseLocalStorage = <T, D>(
   key: string,
-  defaultValue?: string,
-) => [T, Dispatch<SetStateAction<T>>];
+  defaultValue?: D,
+) => {
+  localStorageData: T;
+  setLocalStorageData: React.Dispatch<React.SetStateAction<T>>;
+};
 
-export const useLocalStorage: UseLocalStorage = (key, defaultValue = '') => {
-  const ifLocalDataExist = localStorage.getItem(key);
-
+export const useLocalStorage: TUseLocalStorage = <T, D>(
+  key: string,
+  defaultValue?: D,
+) => {
+  const localData = localStorage.getItem(key);
   const getData = () => {
-    return ifLocalDataExist ? JSON.parse(ifLocalDataExist) : defaultValue;
+    if (!localData) {
+      return defaultValue;
+    }
+
+    try {
+      return JSON.parse(localData);
+    } catch (error) {
+      const e = error as Error;
+      console.log(e.message);
+    }
   };
 
   const setData = () => {
-    return localStorage.setItem(key, JSON.stringify(state));
+    localStorage.setItem(key, JSON.stringify(localStorageData));
   };
 
-  const [state, setState] = useState(getData);
-  useEffect(setData, [key, state]);
+  const [localStorageData, setLocalStorageData] = useState<T>(getData);
+  useEffect(setData, [key, localStorageData]);
 
-  return [state, setState];
+  return { localStorageData, setLocalStorageData };
 };
