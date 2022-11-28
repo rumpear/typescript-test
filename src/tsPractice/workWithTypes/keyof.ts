@@ -73,7 +73,14 @@ const groupByProp = <T extends Record<TKey, any>, K extends keyof T>(
   return groupedObj;
 };
 
-// groupByProp();
+export const sortArrayByIndex = <
+  T extends Record<TKey, number>,
+  K extends keyof T,
+>(
+  array: T[],
+  key: K,
+): T[] => array.sort((a, b) => a[key] - b[key]);
+
 console.log(groupByProp(groupData, 'group'));
 
 export {};
